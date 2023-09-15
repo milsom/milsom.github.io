@@ -1,48 +1,32 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Hello There</title>
   <meta charset="utf-8">
-
-  <title>Test</title>
-  <meta name="description" content="PDP page">
-  <meta property="og:title" content="Some title" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    var utag_data = {
+      site_region : "US",
+      page_name: "Index",
+      tealium_event: "page_view",
+    }
+  </script>
+  <script type="text/javascript">
+      (function(a,b,c,d){
+         a='https://tags.tiqcdn.com/utag/services-dave/main/prod/utag.js?_cb=' + Math.random();
+          b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+          a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+      })();
+  </script>
 </head>
 <body>
-<h1>HI</h1>
-<footer>
-
-<!-- Quantcast Tag -->
-<script type="text/javascript">
-window._qevents = window._qevents || [];
-
-(function() {
-var elem = document.createElement('script');
-elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-elem.async = true;
-elem.type = "text/javascript";
-var scpt = document.getElementsByTagName('script')[0];
-scpt.parentNode.insertBefore(elem, scpt);
-})();
-
-window._qevents.push({
-qacct:"p-d8ybU60n74Ta4"
-});
-</script>
-
-<noscript>
-<div style="display:none;">
-<img src="//pixel.quantserve.com/pixel/p-d8ybU60n74Ta4.gif" border="0" height="1" width="1" alt="Quantcast"/>
+  
+<div class="container">
+      
 </div>
-</noscript>
-<!-- End Quantcast tag -->
-
-</footer>
 
 </body>
 </html>
