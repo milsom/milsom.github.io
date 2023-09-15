@@ -8,11 +8,65 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-    var utag_data = {
-      site_region : "US",
-      page_name: "Index",
-      tealium_event: "page_view",
+    rnd = Math.floor(Math.random()*1000000);
+    window.dl = {
+      home: {
+        tealium_event: "page_view",
+        site_region : "US",
+        page_name : "Index"
+      },
+      product: {
+        tealium_event : "product_view",
+        site_region : "US",
+        page_name : "Blue Shirt",
+        product_id : ["1234567890"],
+        product_sku : ["1234568790-blue"],
+        product_name : ["Blue Shirt"],
+        product_brand : ["Acme"],
+        product_category : ["Socks"],
+        product_unit_price: ["25.00"],
+        product_price : ["19.99"],
+        product_color : ["blue"]
+      },
+      purchase: {
+        tealium_event : "purchase",
+        site_region : "US",
+        page_name : "Confirmation",
+        product_id : ["1234567890"],
+        product_sku : ["1234568790-blue"],
+        product_name : ["Blue Shirt"],
+        product_brand : ["Acme"],
+        product_category : ["Socks"],
+        product_unit_price: ["25.00"],
+        product_price : ["19.99"],
+        product_color : ["blue"],
+        country_code:"us",
+        customer_city:"San Diego",
+        customer_country:"United States",
+        customer_email:"jane.doe_"+rnd+"@gmail.com",
+        customer_first_name:"John",
+        customer_id: rnd.toString(),
+        customer_last_name:"Smith",
+        customer_postal_code:"92101",
+        customer_state:"CA",
+        language_code:"en",
+        order_currency_code:"USD",
+        order_discount_amount:"10.00",
+        order_grand_total:"54.47",
+        order_id:"ORD12345626",
+        order_merchandise_total:"55.98",
+        order_payment_type:"paypal",
+        order_promo_code:"SPRFREE,PROMO10",
+        order_shipping:"6.99",
+        order_shipping_type:"UPS",
+        order_subtotal:"45.98",
+        order_total:"100.00",
+        order_tax:"2.50"
+
+      }
     }
+    document.cookie="utagdb=true";
+    var utag_data = dl.home;
   </script>
   <script type="text/javascript">
       (function(a,b,c,d){
@@ -25,8 +79,39 @@
 <body>
   
 <div class="container">
-      
+  <h1>Hello.</h1>
+  <div class="row">
+    <form id="form">
+    <div class="col-sm-2">
+      <select name="page-select" id="page-select" class="input-lg"></select>
+    </div>
+    <div class="col-sm-6" >
+      <textarea name="utag-json" id="utag-json" rows="40" cols="50"></textarea>
+      <p><button type="button" id="utag-view" class="btn btn-primary">Send It</button></p>
+    </div>
+  </form>
+  </div>
 </div>
+
+  <script type="text/javascript">
+    var pretty = (j) => {return JSON.stringify(j, undefined, 4)};
+    var updateJson = (v) => {$("#utag-json").val(pretty(dl[v]))};
+    var callUtagView = () => {
+      let d = $("#utag-json").val();
+      utag.view(JSON.parse(d));
+    }
+
+    $(document).ready(()=>{
+      $.each(dl,(i,v)=>{
+        $('#page-select').append(`<option value="${i}">${i}</option>`);
+      });
+      updateJson("home");
+      $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
+
+      $("#utag-view").on('click',()=>{callUtagView()});
+
+    });
+  </script>
 
 </body>
 </html>
