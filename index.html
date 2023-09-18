@@ -107,12 +107,21 @@
   <div class="row">
     <form id="form">
     <div class="col-sm-2">
+      <p>
+
       <select name="page-select" id="page-select" class="input-lg"></select>
+      </p>
+      <p>
+        <label>Trace ID</label>
+        <input type="text" name="trace-id" id="trace_id">
+      </p>
     </div>
     <div class="col-sm-6" >
       <textarea name="utag-json" id="utag-json" rows="40" cols="50"></textarea>
-      <p><button type="button" id="utag-view" class="btn btn-primary utag-event">View</button>
-      <button type="button" id="utag-link" class="btn btn-primary utag-event">Link</button></p>
+      <p>
+        <button type="button" id="utag-view" class="btn btn-primary utag-event">View</button>
+        <button type="button" id="utag-link" class="btn btn-primary utag-event">Link</button>
+      </p>
     </div>
   </form>
   </div>
@@ -131,11 +140,18 @@
       $.each(dl,(i,v)=>{
         $('#page-select').append(`<option value="${i}">${i}</option>`);
       });
-      updateJson("home");
+      $("#trace_id").keydown((e)=>{
+        if(e.which==13){
+          e.preventDefault();
+          e.stopPropagation();
+          document.cookie="trace_id="+$(e.target).val();
+          $(e.target).val("OK!");
+          setTimeout(()=>{$(e.target).val("")}, 1000);
+        }
+      });
       $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
-
       $(".utag-event").on('click',(e)=>{callUtagEvent(e.target.id)});
-
+      updateJson("home");
     });
   </script>
 
