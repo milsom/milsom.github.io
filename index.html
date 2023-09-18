@@ -128,7 +128,17 @@
 </div>
 
   <script type="text/javascript">
-    var pretty = (j) => {return JSON.stringify(j, undefined, 4)};
+    var pretty = (j) => {
+      return JSON.stringify(j,function(k,v){
+       if(v instanceof Array)
+          return JSON.stringify(v);
+       return v;
+      },4)
+      .replace(/"\[/g, '[')
+      .replace(/\]"/g, ']')
+      .replace(/\\"/g, '"')
+      .replace(/""/g, '"');
+    }
     var updateJson = (v) => {$("#utag-json").val(pretty(dl[v]))};
     var callUtagEvent= (id) => {
       let ev = id.split("-").pop();
