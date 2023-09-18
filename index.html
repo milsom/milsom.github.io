@@ -41,6 +41,17 @@
         product_price : ["19.99"],
         product_color : ["blue"]
       },
+      cart_add : {
+        tealium_event: "cart_add",
+        product_id : ["1234567890"],
+        product_sku : ["1234568790-blue"],
+        product_name : ["Blue Shirt"],
+        product_brand : ["Acme"],
+        product_category : ["Socks"],
+        product_unit_price: ["25.00"],
+        product_price : ["19.99"],
+        product_color : ["blue"]
+      },
       purchase: {
         tealium_event : "purchase",
         site_region : "US",
@@ -100,7 +111,8 @@
     </div>
     <div class="col-sm-6" >
       <textarea name="utag-json" id="utag-json" rows="40" cols="50"></textarea>
-      <p><button type="button" id="utag-view" class="btn btn-primary">Send It</button></p>
+      <p><button type="button" id="utag-view" class="btn btn-primary utag-event">View</button>
+      <button type="button" id="utag-link" class="btn btn-primary utag-event">Link</button></p>
     </div>
   </form>
   </div>
@@ -109,9 +121,10 @@
   <script type="text/javascript">
     var pretty = (j) => {return JSON.stringify(j, undefined, 4)};
     var updateJson = (v) => {$("#utag-json").val(pretty(dl[v]))};
-    var callUtagView = () => {
+    var callUtagEvent= (id) => {
+      let ev = id.split("-").pop();
       let d = $("#utag-json").val();
-      utag.view(JSON.parse(d));
+      utag[ev](JSON.parse(d));
     }
 
     $(document).ready(()=>{
@@ -121,7 +134,7 @@
       updateJson("home");
       $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
 
-      $("#utag-view").on('click',()=>{callUtagView()});
+      $(".utag-event").on('click',(e)=>{callUtagEvent(e.target.id)});
 
     });
   </script>
