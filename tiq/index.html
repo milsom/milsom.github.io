@@ -160,7 +160,7 @@
         }
       });
       $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
-      $(".utag-event").on('click',(e)=>{callUtagEvent(e.target.id); $(this).css('opacity','.3').animate({'opacity':'1.0'},1500);});
+      $(".utag-event").on('click',function(e){callUtagEvent(e.target.id); $(this).css('opacity','.3').animate({'opacity':'1.0'},1500);});
       updateJson("home");
     });
   </script>
