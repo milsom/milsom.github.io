@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(async () => {
+  // Load the worklet module
+  await window.sharedStorage.worklet.addModule('known-customer-worklet.js');
+
+   // Set the initial status to unknown ('0' is unknown and '1' is known)
+  window.sharedStorage.set('known-customer', 1, {
+    ignoreIfPresent: true,
+  });
+  alert("Set known customer to true.");
+
+})();
+</script>
+
+  <title>Shared Storage</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+       Shared Storage
+    </div>
+</div>
+</body>
+</html>
