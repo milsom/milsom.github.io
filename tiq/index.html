@@ -165,7 +165,7 @@
       $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
       $(".utag-event").on('click',function(e){callUtagEvent(e.target.id); $(this).css('opacity','.3').animate({'opacity':'1.0'},1500);});
       $("#kill-trace-btn").on('click',()=>{
-        console.log("Attempting to kill visitor session for Trace."),window.utag&&utag.track?utag.track("kill_visitor_session",{event:"kill_visitor_session","cp.trace_id":utag.data["cp.trace_id"]}):console.log("Unable to kill visitor session using utag.track."); $("#kill-trace-btn").hide("fast");
+        console.log("Attempting to kill visitor session for Trace."),window.utag&&utag.track?utag.track("kill_visitor_session",{event:"kill_visitor_session","cp.trace_id":utag.data["cp.trace_id"]}):console.log("Unable to kill visitor session using utag.track.");
       })
       updateJson("home");
     });
