@@ -115,6 +115,9 @@
         <label>Trace ID</label>
         <input type="text" name="trace-id" id="trace_id">
       </p>
+      <p>
+        <button type="button" class="btn btn-primary" id="kill-trace-btn">Kill Trace</button>
+      </p>
     </div>
     <div class="col-sm-6" >
       <textarea name="utag-json" id="utag-json" rows="40" cols="50"></textarea>
@@ -161,6 +164,9 @@
       });
       $("#page-select").on('change',(e)=>{updateJson($(e.target).val())});
       $(".utag-event").on('click',function(e){callUtagEvent(e.target.id); $(this).css('opacity','.3').animate({'opacity':'1.0'},1500);});
+      $("#kill-trace-btn").on('click',()=>{
+        console.log("Attempting to kill visitor session for Trace."),window.utag&&utag.track?utag.track("kill_visitor_session",{event:"kill_visitor_session","cp.trace_id":utag.data["cp.trace_id"]}):console.log("Unable to kill visitor session using utag.track."); $("#kill-trace-btn").hide("fast");
+      })
       updateJson("home");
     });
   </script>
