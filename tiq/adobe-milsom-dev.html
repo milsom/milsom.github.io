@@ -14,29 +14,11 @@ window.adobeDataLayer = window.adobeDataLayer || [];
 
 
   <script type="text/javascript">
-/**
-navigator.userAgentData
-  .getHighEntropyValues([
-    "architecture",
-    "model",
-    "platformVersion",
-    "fullVersionList",
-  ])
-  .then((values) =>
-      adobeDataLayer.push({
-        site_region             : "us",
-        page_name               : "My Adobe Test",
-        tealium_event           : "page_view",
-        brands: values.brands
-      })
-    );
-**/
     adobeDataLayer.push({
     site_region             : "us",
     page_name               : "My Adobe Test",
     tealium_event           : "page_view",
   });
-
   </script>
 
 </head>
